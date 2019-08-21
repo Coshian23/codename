@@ -1,6 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 from words import words
 import random
+import datetime
 
 im = Image.new("RGB", (600, 400), (255, 255, 255))
 font = ImageFont.truetype('YuGothB.ttc', 14)
@@ -37,10 +38,6 @@ def cards(word, i, j, type):
     w,h = draw.textsize(word, font=font)
     draw.multiline_text((20+110*i+55-w/2, 20+72*j+36-h/2), word, fill=(0, 0, 0), font=font)
     return
-#draw.line((0, im.height, im.width, 0), fill=(255, 0, 0), width=8)
-#draw.rectangle((100, 100, 200, 200), fill=(0, 255, 0))
-#draw.ellipse((250, 300, 450, 400), fill=(0, 0, 255))
-#draw.rectangle((20, 20, 580, 380), fill=(255, 255, 255), outline=(0, 0, 0))
 
 for i in range(0,5):
     for j in range(0,5):
@@ -57,4 +54,7 @@ draw.rectangle((430, 5, 445, 15), fill=(130, 130, 130), outline=(0, 0, 0))
 draw.multiline_text((450, 0), 'assassin', fill=(0, 0, 0), font=font)
 draw.multiline_text((450, 385), start_team, fill=start_fill, font=font)
 #im.show()
-im.save('pillow_iamge_draw.jpg', quality=95)
+date = datetime.datetime.today()
+fname = "codename_" + date.strftime("%Y%m%d") + ".jpg"
+
+im.save(fname, quality=95)
